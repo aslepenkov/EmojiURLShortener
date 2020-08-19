@@ -1,0 +1,32 @@
+{
+  "name": "nodeclusterserver",
+  "version": "1.0.0",
+  "description": "simple node http server clustering",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "serve": "nodemon server.js",
+    "test": "autocannon -c 200 -d 10 http://localhost:8001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aslepenkov/NodeClusterServer.git"
+  },
+  "keywords": [
+    "node",
+    "cluster",
+    "js"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aslepenkov/NodeClusterServer/issues"
+  },
+  "homepage": "https://github.com/aslepenkov/NodeClusterServer#readme",
+  "devDependencies": {
+    "autocannon": "^6.0.0",
+    "nodemon": "^2.0.4"
+  }
+}
