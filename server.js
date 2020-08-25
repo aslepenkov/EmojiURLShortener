@@ -25,5 +25,5 @@ else if (cluster.isWorker) {
     process.on('message', (msg) => {
         console.log(`[!]Message from master: ${msg}`);
     });
-    process.send({ message: `Hello!`, pid })
+    //process.send({ message: `Hello!`, pid })
 }
