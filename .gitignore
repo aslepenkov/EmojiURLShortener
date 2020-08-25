@@ -2,3 +2,4 @@ node_modules/
 .unotes/
 .env
 jsconfig.json
+public/vue.min.js
