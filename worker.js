@@ -85,16 +85,8 @@ app.use((error, req, res, next) => {
 });
 
 const { pid } = process;
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 1337;
 app.listen(port, () => {
   console.log(`Server started. PID: ${pid}  PORT: ${port}`);
+  console.log(`Listening at http://localhost:${port}`);
 });
-// http.createServer((req, res) => {
-
-//     //ANY HEAVY TASK
-//     for (let i = 0; i < 1e7; i++) { }
-
-//     res.end(`Server created\n`)
-// }).listen(port, () => {
-//     console.log(`Server started. PID: ${pid}  PORT: ${port}`)
-// })
