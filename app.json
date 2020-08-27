@@ -1,0 +1,9 @@
+{
+  "name": "EmojiURL",
+  "description": "Shorten your URLs with emojis on your own service",
+  "repository": "https://github.com/aslepenkov/NodeClusterServer",
+  "logo": "",
+  "keywords": [
+    "Emoji"
+  ]
+}
