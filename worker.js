@@ -33,6 +33,11 @@ app.get('/:id', async (req, res) => {
   }
 });
 
+app.get('/api/rand', async (req, res) => {
+  const rand = getEmojis(3);
+  res.json({ rand });
+});
+
 app.get('/url/:id', async (req, res) => {
   const { id: slug } = req.params;
   try {

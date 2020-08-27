@@ -6,6 +6,15 @@ const app = new Vue({
     error: '',
     formVisible: true,
     created: null,
+    rand: '😋😋😋',
+  },
+  async  beforeMount() {
+    // `this` указывает на экземпляр vm
+    const response = await fetch('/api/rand', {
+      method: 'GET',
+    });
+    const result = await response.json();
+    this.rand = result.rand;
   },
   methods: {
     async createUrl() {
@@ -26,6 +35,7 @@ const app = new Vue({
       } else {
         const result = await response.json();
         this.error = result.message;
+        console.log(error);
       }
     },
   },

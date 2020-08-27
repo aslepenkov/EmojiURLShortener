@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>URL-emoji</title>
-</head>
+  </head>
 
-<body>
-    <header>
-        <h1>Short URL with emoji😋😋😋</h1>
-    </header>
-      <main id="app">
-    <form class="form" v-if="formVisible" @submit.prevent="createUrl()">
-      <div v-if="error" class="error">
-        {{error}}
+  <body>
+    <main id="app">
+      <header>
+        <h1>Shorten URL with emoji {{rand}}</h1>
+      </header>
+      <div class="container">
+        <div class="col">
+          <form class="form" v-if="formVisible" @submit.prevent="createUrl()">
+            <div v-if="error" class="error">{{error}}</div>
+
+            <div class="form-group">
+              <label for="input">URL to be shorten</label>
+              <input
+                class="form-control form-control-lg input"
+                type="text"
+                v-model="url"
+                name="url"
+                id="url"
+                placeholder="https://google.com"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-success create">
+              DO MAGIC🔮✨
+            </button>
+          </form>
+          <div v-if="created">
+            <h1>
+              <p class="created">
+                Your short URL is:
+                <a
+                  class="list-group-item list-group-item-action list-group-item-success created"
+                  :href="created"
+                  >{{created}}</a
+                >
+              </p>
+            </h1>
+          </div>
+        </div>
       </div>
-      <input class="input" type="text" v-model="url" name="url" id="url" placeholder="enter a url">
-      <button type="submit" class="create">create</button>
-    </form>
-    <div v-if="created">
-      <p class="created">Your short url is: <a :href="created">{{created}}</a></p>
-    </div>
-
-     <pre v-if="created">
-      {{JSON.stringify(created, null, 2)}}
-    </pre>
     </main>
-    <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.jss"></script> 
-    <!-- <script src="vue.min.js"></script> -->
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.jss"></script>
     <script src="app.js"></script>
-</body>
-
+  </body>
 </html>
