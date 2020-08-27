@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const yup = require('yup');
 const monk = require('monk');
 const getEmojis = require('./emojis.js');
-const { nanoid } = require('nanoid');
 
 require('dotenv').config();
 
@@ -34,7 +33,18 @@ app.get('/:id', async (req, res) => {
   }
 });
 
-app.get('/url/:id', (req, res) => {});
+app.get('/url/:id', async (req, res) => {
+  const { id: slug } = req.params;
+  try {
+    const urlObj = await urls.findOne({ slug });
+    if (!urlObj) {
+      throw new Error('Slug not found');
+    }
+    res.json(urlObj);
+  } catch (error) {
+    res.redirect(`/?error=Slug ${slug} not found`);
+  }
+});
 
 const scheme = yup.object().shape({
   slug: yup.string().trim().matches(/[\w-]/i),
@@ -42,29 +52,23 @@ const scheme = yup.object().shape({
 }); // Yup is a JavaScript schema builder for value parsing and validation
 
 app.post('/url', async (req, res, next) => {
-  let { slug, url } = req.body;
+  const { url } = req.body;
   try {
     await scheme.validate({
-      slug,
       url,
     });
 
-    if (!slug) {
-      const id = getEmojis.getEmojis(5);
-      console.log(id);
-      slug = nanoid(5); // A tiny, secure, URL-friendly, unique string ID generator for JavaScript
-    } else {
-      const isExisting = await urls.findOne({ slug });
-      if (isExisting) {
-        throw new Error('Slug isn\'t unique!');
-      }
+    let slug = getEmojis(3);
+
+    const isExisting = await urls.findOne({ slug });
+    if (isExisting) {
+      throw new Error('Slug isn\'t unique. Try again!');
     }
+
     slug = slug.toLowerCase();
-    const secret = nanoid(10).toLowerCase();
     const newUrl = {
       url,
       slug,
-      secret,
     };
     const created = await urls.insert(newUrl);
     res.json(created);
@@ -85,7 +89,7 @@ app.use((error, req, res, next) => {
 });
 
 const { pid } = process;
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Server started. PID: ${pid}  PORT: ${port}`);
   console.log(`Listening at http://localhost:${port}`);

@@ -18,23 +18,18 @@
         {{error}}
       </div>
       <input class="input" type="text" v-model="url" name="url" id="url" placeholder="enter a url">
-      <input class="input" type="text" v-model="slug" name="slug" id="slug" placeholder="enter a slug">
       <button type="submit" class="create">create</button>
     </form>
     <div v-if="created">
       <p class="created">Your short url is: <a :href="created">{{created}}</a></p>
     </div>
-  
 
-
-    <pre>
-        {{JSON.stringify(created, null, 2)}}
-    </pre>
      <pre v-if="created">
       {{JSON.stringify(created, null, 2)}}
     </pre>
     </main>
-    <script src="https://unpkg.com/browse/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.jss"></script> 
+    <!-- <script src="vue.min.js"></script> -->
     <script src="app.js"></script>
 </body>
 

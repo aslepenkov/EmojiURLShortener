@@ -17,12 +17,12 @@ const app = new Vue({
         },
         body: JSON.stringify({
           url: this.url,
-          slug: this.slug || undefined,
         }),
       });
       if (response.ok) {
         const result = await response.json();
-        this.created = `https://localhost:1337/${result.slug}`;
+        this.formVisible = false;
+        this.created = `${window.location.href}${result.slug}`;
       } else {
         const result = await response.json();
         this.error = result.message;
