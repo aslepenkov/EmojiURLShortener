@@ -14,7 +14,7 @@ urls.createIndex({ slug: 1 }, { unique: true });
 
 const app = express();
 
-app.use(helmet()); // Helmet helps you secure your Express apps by setting various HTTP headers
+//app.use(helmet()); // Helmet helps you secure your Express apps by setting various HTTP headers
 app.use(morgan('dev')); // HTTP request logger middleware for node.js
 app.use(cors()); // for providing CORS with various options.
 app.use(express.json()); //  recognize the incoming Request Object as a JSON Object.
