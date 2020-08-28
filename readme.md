@@ -11,7 +11,7 @@ This is an example of a simple clustered server for NodeJS
 ## Deploy own service in Heroku
 
 * Deploy mongo instance
-* [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/aslepenkov/NodeClusterServer)
+* [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/aslepenkov/EmojiURLShortener)
 * add .env file or config vars in heroku
 
 ```
