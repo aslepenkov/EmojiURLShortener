@@ -52,7 +52,6 @@ app.get('/url/:id', async (req, res) => {
 });
 
 const scheme = yup.object().shape({
-  slug: yup.string().trim().matches(/[\w-]/i),
   url: yup.string().trim().url().required(),
 }); // Yup is a JavaScript schema builder for value parsing and validation
 
