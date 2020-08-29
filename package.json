@@ -8,8 +8,9 @@
   },
   "scripts": {
     "start": "node server.js",
+    "test": "jest --runInBand",
     "dev": "nodemon server.js",
-    "test": "autocannon -c 200 -d 10 http://localhost:8001"
+    "benchmark": "autocannon -c 200 -d 10 http://localhost:8080"
   },
   "repository": {
     "type": "git",
@@ -28,15 +29,20 @@
   "homepage": "https://github.com/aslepenkov/NodeClusterServer#readme",
   "devDependencies": {
     "autocannon": "^6.0.0",
+    "babel-cli": "^6.26.0",
     "eslint": "^7.7.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "nodemon": "^2.0.4"
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "superagent": "^6.0.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "emoji-uid": "^1.0.3",
     "express": "^4.17.1",
     "helmet": "^4.1.0",
     "monk": "^7.3.1",
