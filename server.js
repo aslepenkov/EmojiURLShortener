@@ -19,9 +19,16 @@ if (cluster.isMaster) {
     });
   }
 } else if (cluster.isWorker) {
-  require('./worker.js');
+  const app = require('./worker.js');
   process.on('message', (msg) => {
     console.log(`[!]Message from master: ${msg}`);
   });
+
+  const port = process.env.PORT || 8080;
+  app.listen(port, () => {
+    console.log(`Server started. PID: ${pid}  PORT: ${port}`);
+    console.log(`Listening at http://localhost:${port}`);
+  });
+
   // process.send({ message: `Hello!`, pid })
 }

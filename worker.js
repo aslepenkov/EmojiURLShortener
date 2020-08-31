@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const yup = require('yup');
 const monk = require('monk');
-const getEmojis = require('./emojis.js');
+const getEmojis = require('emoji-uid');
 
 require('dotenv').config();
 
@@ -14,7 +14,28 @@ urls.createIndex({ slug: 1 }, { unique: true });
 
 const app = express();
 
-//app.use(helmet()); // Helmet helps you secure your Express apps by setting various HTTP headers
+// app.use(helmet()); // Helmet helps you secure your Express apps by setting various HTTP headers
+app.use(helmet.dnsPrefetchControl());// breakes umpkg vue in scripts
+app.use(helmet.expectCt());
+app.use(helmet.frameguard());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
+app.use(helmet.dnsPrefetchControl());
+app.use(helmet.expectCt());
+app.use(helmet.frameguard());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
+
 app.use(morgan('dev')); // HTTP request logger middleware for node.js
 app.use(cors()); // for providing CORS with various options.
 app.use(express.json()); //  recognize the incoming Request Object as a JSON Object.
@@ -92,9 +113,4 @@ app.use((error, req, res, next) => {
   });
 });
 
-const { pid } = process;
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(`Server started. PID: ${pid}  PORT: ${port}`);
-  console.log(`Listening at http://localhost:${port}`);
-});
+module.exports = app;
